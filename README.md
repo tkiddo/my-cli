@@ -1,4 +1,4 @@
-# 从 0 到 1 构建自己的脚手架
+# 聊一聊脚手架
 
 搭建脚手架的目的就是快速的搭建项目的基本结构并提供项目规范和约定。目前日常工作中常用的脚手架有 vue-cli、create-react-app、angular-cli 等等，都是通过简单的初始化命令，完成内容的快速构建。
 
@@ -254,3 +254,32 @@ inquirer
 然后在命令行执行`my-cli`，就能生成项目文件了。
 
 ### 热门脚手架工具库
+
+- [commander](https://github.com/tj/commander.js)：命令行自定义指令
+
+以上我们是直接运行了`my-cli`命令来执行，但往往一个脚手架会包含多项功能，创建项目只是其中一个普遍的功能。commaner 可以为脚手架自定义指令。
+
+```js
+#! /usr/bin/env node
+
+const program = require('commander');
+
+program
+  .version('0.1.0')
+  .command('create <name>')
+  .description('create a new project')
+  .action((name) => {
+    // 打印命令行输入的值
+    console.log('project name is ' + name);
+  });
+
+program.parse();
+```
+
+- [chalk](https://github.com/chalk/chalk)：命令行美化工具
+
+- [inquirer](https://github.com/SBoudrias/Inquirer.js)：命令行交互工具
+
+- [ora](https://github.com/sindresorhus/ora)：命令行 loading 动效
+
+- [cross-spawn](https://github.com/moxystudio/node-cross-spawn)：shell 执行工具
